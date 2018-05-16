@@ -1,24 +1,6 @@
 <template>
   <div>
-      radio
-    <h2>{{msg}}</h2>
-    <hr/>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    <h3 @click="aaa()">aaaaaaaaa</h3>
-    
+      电台
   </div>
 </template>
 <script>

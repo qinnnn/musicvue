@@ -48,19 +48,18 @@ import BScroll from 'better-scroll'
 export default {
   data(){
       return{
-          msg:'aaa',
-          userImg:'',
-          backgroundImg:'',
-          username:'',
-          userlevel:''
+          userImg:'',//用户头像
+          backgroundImg:'',//用户背景图片
+          username:'',//用户名
+          userlevel:''//用户等级
       }
   },
   mounted(){
       this.slide()
-      var params={
+      var params={//传入userid
           uid:sessionStorage.user
       }
-      API.user.information(params).then(({data}) => {
+      API.user.information(params).then(({data}) => {//获取用户详情信息
         //   console.log(data)
           this.userImg=data.profile.avatarUrl
           this.backgroundImg=data.profile.backgroundUrl
@@ -71,7 +70,7 @@ export default {
   },
   methods:{
       slide(){
-      this.scroll = new BScroll(this.$refs.wrapperleft, {
+      this.scroll = new BScroll(this.$refs.wrapperleft, {//初始化滑动组件
           click:true,
           momentum:false,
           probeType:2,

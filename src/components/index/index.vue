@@ -19,9 +19,13 @@
     <mu-popup position="right" popupClass="demo-popup-right" :open="rightPopup" @close="close('right')">
       <mu-raised-button label="关闭弹框" @click="close('right')" primary fullWidth/>
     </mu-popup>
+
+    <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottomPopup" @close="close('bottom')">
+      <songSheet v-if="bottomPopup"></songSheet>
+    </mu-popup>
     
     <!-- v-if="activeTab === 'tab1'" -->
-    <div class="wrapper2" ref="wrapper2">
+    <div :class="{wrapper2:musicState,wrapper21:!musicState}" ref="wrapper2">
       <div class="content2">
         <div class="list" ref="wrapper21">
           <music></music>
@@ -29,10 +33,10 @@
         <div class="list">
             <home></home>
         </div>
-        <div class="list" ref="wrapper22">
-          <div>
+        <div class="list">
+          <!-- <div> -->
             <contacts v-if="state2"></contacts>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>
@@ -42,25 +46,39 @@
 </template>
 
 <script>
+import {mapGetters, mapMutations, mapActions} from 'vuex';
 import BScroll from 'better-scroll'
 import contacts from '@/components/contacts/contacts'
 import home from '@/components/home/home'
 import music from '@/components/music/music'
 import musicProgress from '@/components/musicProgress/musicProgress'
 import personal from './personal'
+import songSheet from './songSheet'
 
 
 export default {
   data(){
     return {
-      rightPopup: false,
-      leftPopup: false,
-      activeTab: "0",
-      left1:false,
-      state2:false
+      rightPopup: false,//搜索弹框
+      leftPopup: false,//个人信息弹框
+      bottomPopup:false,//歌单详情弹窗
+      activeTab: "0",//导航条
+      left1:false,//个人信息
+      state2:false,//动态
     }
   },
+  computed:{
+      ...mapGetters([
+          'songSheetId',
+          'songSheet',
+          'musicState'
+      ])
+  },
   methods:{
+    ...mapMutations([
+          'set_songSheet',
+          'set_songSheetId'
+    ]),
     open (position) {
       this[position + 'Popup'] = true
       this[position + '1'] = true
@@ -78,19 +96,19 @@ export default {
       this.activeTab = val
       this["state"+val] = true
     },
-    slide2(){
-        this.scroll2 = new BScroll(this.$refs.wrapper22, {
-          click:true,
-          momentum:false,
-          probeType:2,
-          useTransition:false,
-          directionLockThreshold:0,
-          bounce:{
-              top:false,
-              bottom:false
-            }
-        })
-    },
+    // slide2(){
+    //     this.scroll2 = new BScroll(this.$refs.wrapper22, {
+    //       click:true,
+    //       momentum:false,
+    //       probeType:2,
+    //       useTransition:false,
+    //       directionLockThreshold:0,
+    //       bounce:{
+    //           top:false,
+    //           bottom:false
+    //         }
+    //     })
+    // },
     slide1(){
         this.scroll1 = new BScroll(this.$refs.wrapper21, {
           click:true,
@@ -152,13 +170,19 @@ export default {
     music,
     home,
     musicProgress,
-    personal
+    personal,
+    songSheet
   },
+  watch: {  
+      songSheetId: function() {
+          this.bottomPopup=this.songSheet
+      }  
+  }, 
   mounted() {
     this.$nextTick(() => {
         this.slide()
         this.slide1()
-        this.slide2()
+        // this.slide2()
       })
     if(sessionStorage.user){
     }else{

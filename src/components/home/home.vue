@@ -12,10 +12,11 @@
       <div class="homeList" ref="wrapper1">
         <audios></audios>
       </div>
-      <div class="homeList" ref="wrapper2">
-        <div>
+      <div class="homeList" >
+        <!-- ref="wrapper2" -->
+        <!-- <div> -->
         <videos v-if="state1"></videos>
-        </div>
+        <!-- </div> -->
       </div>
       <div class="homeList" ref="wrapper3">
         <div>
@@ -72,17 +73,17 @@ export default {
         })
     },
     slide2(){
-      this.scroll2 = new BScroll(this.$refs.wrapper2, {
-          click:true,
-          momentum:false,
-          probeType:2,
-          useTransition:false,
-          directionLockThreshold:0,
-          bounce:{
-              top:false,
-              bottom:false
-            }
-        })
+      // this.scroll2 = new BScroll(this.$refs.wrapper2, {
+      //     click:true,
+      //     momentum:false,
+      //     probeType:2,
+      //     useTransition:false,
+      //     directionLockThreshold:0,
+      //     bounce:{
+      //         top:false,
+      //         bottom:false
+      //       }
+      //   })
     },
     slide3(){
       this.scroll3 = new BScroll(this.$refs.wrapper3, {
