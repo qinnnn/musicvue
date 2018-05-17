@@ -5,7 +5,7 @@
         <div v-if="songTitle" class="audio_tag_text2">{{information.name}}</div>
         <div v-if="songTitle" class="audio_tag_text">{{information.ar[0].name}}/{{information.al.name}}</div>
     </div>
-    <div v-if="!musicState2" class="audio_tag_img iconfont" @click="play($event,true)">&#xe624;</div>
+    <div v-if="!musiczPlayState" class="audio_tag_img iconfont" @click="play($event,true)">&#xe624;</div>
     <div v-else class="audio_tag_img iconfont" @click="play($event,false)">&#xe629;</div>
     <div class="audio_tag_img iconfont">&#xe600;</div>
 
@@ -25,7 +25,7 @@
               <transition name="lyric">
               <div v-if="!lyricState" class="audioState_cent_cd">
                   <div class="audioState_cent_cd_m">
-                    <div class="audioState_cent_cd_mao" @click="lyricState=!lyricState" v-lazy:background-image="{backgroundImage:'url('+require('../../assets/img/cd2.png')+')',transform:'rotate('+cd2Rotate+'deg)'}"></div>
+                    <div class="audioState_cent_cd_mao" @click="lyricState=!lyricState" :style="{backgroundImage:'url('+require('../../assets/img/cd2.png')+')',transform:'rotate('+cd2Rotate+'deg)'}"></div>
                   </div>
                   <div class="audioState_cent_cd_pan roter" @click="lyricState=!lyricState" :class="{roter_pause :cdRotate}" :style="{backgroundImage:'url('+require('../../assets/img/cd.png')+')'}"></div>
                   <div class="audioState_cent_cd_img roter" @click="lyricState=!lyricState" :class="{roter_pause :cdRotate}" v-lazy:background-image="musicBlurPic"></div>
@@ -86,7 +86,7 @@
                   <div v-if="loop==4" @click="updateLoop" class="audioState_state_span iconfont">&#xe622;</div>
                   <div class="audioState_state_s">
                     <div class="iconfont audioState_state_sd">&#xe610;</div>
-                    <div v-if="!musicState2" @click="play($event,true)" class="iconfont audioState_state_sd" style="font-size:36px">&#xe624;</div>
+                    <div v-if="!musiczPlayState" @click="play($event,true)" class="iconfont audioState_state_sd" style="font-size:36px">&#xe624;</div>
                     <div v-else @click="play($event,false)" class="iconfont audioState_state_sd" style="font-size:36px">&#xe629;</div>
                     <div class="iconfont audioState_state_sd">&#xe612;</div>
                   </div>
@@ -113,7 +113,7 @@ export default {
           currentTime: '00:00',//当前时间
           allTime:'00:00',//全部时间
           information:'',//保存当前歌曲歌手和歌名
-          musicState2:true,//播放状态
+        //   musicState2:true,//播放状态
           bottomMusic:false,//歌曲弹框
           musicZIndex:{
               zIndex:this.musiczIndex//设置层次
@@ -145,7 +145,8 @@ export default {
           'musicBlurPic',
           'musicState',
           'songSheet',
-          'musiczIndex'
+          'musiczIndex',
+          'musiczPlayState'
       ])
       
   },
@@ -234,7 +235,7 @@ export default {
             this.lyricState=false//重置歌词显示 必须写在初始化dom之前
             this.$nextTick(() => {
                 this.$refs.audio.play()//获取后进行播放
-                this.musicState2=true
+                this.set_musiczPlayState(true)
                 this.cdRotate=false//初始化cd位置
                 this.cd2Rotate=0//初始化cd架子位置
                 this.lyricState2=true
@@ -249,12 +250,24 @@ export default {
             this.information=data.songs[0]
             this.songTitle=true
         })
-      }  
+      },
+      musiczPlayState:function(){//监听音乐播放状态是否被更改
+        if(this.musiczPlayState){
+            this.$refs.audio.play()//播放
+            this.cd2Rotate=0
+            this.cdRotate=false
+        }else{
+            this.$refs.audio.pause()//暂停
+            this.cd2Rotate=-20
+            this.cdRotate=true
+        }
+      }
   }, 
   methods:{
       ...mapMutations([
           'set_musicId',
-          'set_musiczIndex'
+          'set_musiczIndex',
+          'set_musiczPlayState'
       ]),
       getTimes(){//播放中就会一直调用这个方法
         if(this.bottomMusic){
@@ -291,8 +304,8 @@ export default {
       },
       play(e,state){//播放暂停
           e.cancelBubble = true//事件穿透
-          this.musicState2=state
-          if(this.musicState2){//根据传来的状态进行播放暂停
+          this.set_musiczPlayState(state)
+          if(this.musiczPlayState){//根据传来的状态进行播放暂停
               this.$refs.audio.play()//播放
               this.cd2Rotate=0
               this.cdRotate=false
@@ -339,7 +352,7 @@ export default {
           this.cd2Rotate=-20
           this.cdRotate=true
           this.$refs.audio.pause()//暂停
-          this.musicState2=false//播放暂停，加载列表的歌曲继续播放
+          this.set_musiczPlayState(false)//播放暂停，加载列表的歌曲继续播放
       },
       conSeconds(t){//把形如：01：25的时间转化成秒;
         if(t!=null){

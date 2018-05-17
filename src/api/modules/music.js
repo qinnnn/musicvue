@@ -61,3 +61,40 @@ export function banner (params) {
     params: requestParam(params, 'get')
   })
 }
+
+// 获取推荐歌单
+export function recommendSongSheet (params) {
+  return request({
+    url: requestUrl('/personalized'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}
+
+// 获取独家放送
+export function privatecontent (params) {
+  return request({
+    url: requestUrl('/personalized/privatecontent'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}
+
+// 获取最新音乐
+export function newsong (params) {
+  return request({
+    url: requestUrl('/personalized/newsong'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}
+
+
+// 获取推荐MV
+export function recommendMV (params) {
+  return request({
+    url: requestUrl('/personalized/mv'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}

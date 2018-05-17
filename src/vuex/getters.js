@@ -19,5 +19,14 @@
     export const musiczIndex=(state)=>{
         return state.musiczIndex
     }
+    export const mvPlayId=(state)=>{
+        return state.mvPlayId
+    }
+    export const mvPlayState=(state)=>{
+        return state.mvPlayState
+    }
+    export const musiczPlayState=(state)=>{
+        return state.musiczPlayState
+    }
 
 

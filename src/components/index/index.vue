@@ -20,8 +20,12 @@
       <mu-raised-button label="关闭弹框" @click="close('right')" primary fullWidth/>
     </mu-popup>
 
-    <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottomPopup" @close="close('bottom')">
-      <songSheet v-if="bottomPopup"></songSheet>
+    <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottom1Popup" @close="close('bottom1')">
+      <songSheet v-if="bottom1Popup"></songSheet>
+    </mu-popup>
+
+    <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottom2Popup" @close="close('bottom2')">
+      <mvPlay v-if="bottom2Popup"></mvPlay>
     </mu-popup>
     
     <!-- v-if="activeTab === 'tab1'" -->
@@ -54,6 +58,7 @@ import music from '@/components/music/music'
 import musicProgress from '@/components/musicProgress/musicProgress'
 import personal from './personal'
 import songSheet from './songSheet'
+import mvPlay from '@/components/mv/mvPlay'
 
 
 export default {
@@ -61,7 +66,8 @@ export default {
     return {
       rightPopup: false,//搜索弹框
       leftPopup: false,//个人信息弹框
-      bottomPopup:false,//歌单详情弹窗
+      bottom1Popup:false,//歌单详情弹窗
+      bottom2Popup:false,//mv详情弹窗
       activeTab: "0",//导航条
       left1:false,//个人信息
       state2:false,//动态
@@ -71,7 +77,8 @@ export default {
       ...mapGetters([
           'songSheetId',
           'songSheet',
-          'musicState'
+          'musicState',
+          'mvPlayState'
       ])
   },
   methods:{
@@ -171,18 +178,21 @@ export default {
     home,
     musicProgress,
     personal,
-    songSheet
+    songSheet,
+    mvPlay
   },
   watch: {  
-      songSheetId: function() {
-          this.bottomPopup=this.songSheet
-      }  
+      songSheetId: function() {//监听歌单id是否被修改
+          this.bottom1Popup=this.songSheet
+      },
+      mvPlayState:function(){//监听mv弹框状态
+        this.bottom2Popup=this.mvPlayState
+      }
   }, 
   mounted() {
     this.$nextTick(() => {
         this.slide()
         this.slide1()
-        // this.slide2()
       })
     if(sessionStorage.user){
     }else{

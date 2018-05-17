@@ -16,22 +16,19 @@ body {
 }
 @font-face {
   font-family: 'iconfont';  /* project id 638865 */
-  src: url('//at.alicdn.com/t/font_638865_nrq42pxnyd5cdi.eot');
-  src: url('//at.alicdn.com/t/font_638865_nrq42pxnyd5cdi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_638865_nrq42pxnyd5cdi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_638865_nrq42pxnyd5cdi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_638865_nrq42pxnyd5cdi.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_638865_4q5aniaeqtdibe29.eot');
+  src: url('//at.alicdn.com/t/font_638865_4q5aniaeqtdibe29.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_638865_4q5aniaeqtdibe29.woff') format('woff'),
+  url('//at.alicdn.com/t/font_638865_4q5aniaeqtdibe29.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_638865_4q5aniaeqtdibe29.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
     font-size:22px;font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;}
-
-
-
-
+    -moz-osx-font-smoothing: grayscale;
+  }
 .musicProgressStyle{
   width: 100%;
   height: 50px;
@@ -429,7 +426,7 @@ margin: 12px;
   left: 0;
   right: 0;
   height:220px;
-  background-color:rgba(97, 97, 97, 0.2)
+  background-color:rgba(97, 97, 97, 0.2);
 }
 .musicBottom_tag2{
   pointer-events: auto;
@@ -1023,6 +1020,174 @@ to{transform:rotate(360deg)}
     font-style:normal;
     margin: 0;
     margin-top: 10px;
+  }
+}
+.audios_recommendSongSheet{
+  display: flex;
+  justify-content: space-around;
+  width:100%;
+  max-width: 400px;
+  margin: 0 auto;
+  flex-wrap:wrap;
+  div{
+    height: 170px;
+    width: 32%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: flex-end;
+    img{
+      pointer-events: auto;
+      background-size: cover;
+      background-repeat:no-repeat;
+      background-position: 50%;
+      width: 100%;
+      height: 120px;
+    }
+    p{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      width: 100%;
+      height: 32px;
+      margin: 0;
+      margin-top: 5px;
+    }
+    b{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+      width: 100%;
+      font-weight: normal;
+    }
+    i{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+      width: 100%;
+      font-style: normal;
+      color: #757575;
+      font-size: 12px;
+    }
+    span{
+      position: absolute;
+      margin-right:0px;
+      i{
+        font-size: 12px;
+        color: #fff;
+        font-style: normal;
+      }
+      b{
+        font-weight: normal;
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+  }
+}
+.audios_Tager{
+  width:100%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 0 10px 0;
+  span{
+    background-color: #009688;
+    height: 100%;
+    width:3px;
+  }
+  i{
+    font-style:normal;
+    font-size: 16px;
+    font-weight:bold;
+    line-height: 20px;
+    margin-left: 10px;
+  }
+  b{
+    font-weight: normal; 
+    margin-left: 5px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+.audios_privatecontent{
+  display: flex;
+  justify-content: space-around;
+  width:100%;
+  max-width: 400px;
+  margin: 0 auto;
+  flex-wrap:wrap;
+  div{
+    height: 170px;
+    width: 48%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: flex-end;
+    img{
+      pointer-events: auto;
+      background-size: cover;
+      background-repeat:no-repeat;
+      background-position: 50%;
+      width: 100%;
+      height: 120px;
+    }
+    p{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      width: 100%;
+      height: 32px;
+      margin: 0;
+      margin-top: 5px;
+    }
+    b{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+      width: 100%;
+      font-weight: normal;
+    }
+    i{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+      width: 100%;
+      font-style: normal;
+      color: #757575;
+      font-size: 12px;
+    }
+    strong{
+      position: absolute;
+      i{
+        font-weight:normal;
+        font-size: 12px;
+        color: #fff;
+      }
+      b{
+        font-weight:normal;
+        margin:0; 
+        font-size: 12px;
+        color: #fff;
+      }
+    }
+    span{
+      position: absolute;
+      width:23px;
+      height: 23px;
+      border:1px solid #fff;
+      border-radius: 100%;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.2);
+      b{
+        font-size: 12px;
+        color: #fff;
+        font-weight: normal;
+        line-height: 21px;
+      }
+    }
   }
 }
 

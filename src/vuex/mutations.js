@@ -24,4 +24,13 @@ export default {
     [types.set_musiczIndex](state,e){
         state.musiczIndex=e
     },
+    [types.set_mvPlayId](state,e){
+        state.mvPlayId=e
+    },
+    [types.set_mvPlayState](state,e){
+        state.mvPlayState=e
+    },
+    [types.set_musiczPlayState](state,e){
+        state.musiczPlayState=e
+    },
 }

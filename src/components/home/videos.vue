@@ -2,7 +2,7 @@
   <div class="contact" ref="videos">
     <div class="contact_cent" style="width:100%">
         <div v-for="(item,key) in videoList" class="contentleft" :key="key" style="margin-bottom:10px;">
-            <lazy-component class="videos_list_back" v-lazy:background-image="item.cover">
+            <div class="videos_list_back" v-lazy:background-image="item.cover" @click="MVPlay(item.id)">
                 <div class="audioState_cent_cd">
                     <div class="videos_list_username">
                     {{item.artistName}}
@@ -13,7 +13,7 @@
                     <span>{{item.playCount}}</span>
                     <span>{{item.name}}</span>
                 </div>
-            </lazy-component>
+            </div>
             <div class="videos_list_tag">{{item.briefDesc}}</div>
         </div>
         <div v-if="loadingImg" class="spinner">
@@ -62,7 +62,10 @@ export default {
    },
   methods:{
       ...mapMutations([
-          'set_increment'
+          'set_increment',
+          'set_mvPlayId',
+          'set_mvPlayState',
+          'set_musiczPlayState'
       ]),
       slide(){//初始化slide插件
         this.scroll = new BScroll(this.$refs.videos, {
@@ -77,7 +80,11 @@ export default {
             }
         })
        },
-   
+        MVPlay(id){//播放mv
+        this.set_mvPlayState(true)//打开mv弹框
+        this.set_mvPlayId(id)//传入mvid
+        this.set_musiczPlayState(false)//开始播放mv暂停音乐播放
+       },
   }
 }
 </script>

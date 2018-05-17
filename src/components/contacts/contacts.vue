@@ -23,7 +23,7 @@
                     {{contcatsListJson[key].msg}}
                 </div>
                 <!-- video 视频-->
-                <div v-if="contcatsListJson[key].video" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].video.coverUrl">
+                <div v-if="contcatsListJson[key].video" class="contact_list_video" @click="MVPlay(contcatsListJson[key].video.id)" v-lazy:background-image="contcatsListJson[key].video.coverUrl">
                     <div class="contact_list_video_title">
                         {{contcatsListJson[key].video.title}}
                         <span>-by{{contcatsListJson[key].video.creator.nickname}}</span>
@@ -112,7 +112,10 @@ export default {
           'set_musiczIndex',
           'set_musicState',
           'set_musicId',
-          'set_musicBlurPic'
+          'set_musicBlurPic',
+          'set_mvPlayId',
+          'set_mvPlayState',
+          'set_musiczPlayState'
       ]),
       slide(){//初始化slide插件
         this.scroll2 = new BScroll(this.$refs.contact, {
@@ -142,7 +145,13 @@ export default {
                 this.set_musiczIndex(parseInt(bottom.style.zIndex)+1)
             })
         }
-      }
+      },
+      MVPlay(id){//播放mv
+        console.log(id)
+        this.set_mvPlayState(true)//打开mv弹框
+        this.set_mvPlayId(id)//传入mvid
+        this.set_musiczPlayState(false)//开始播放mv暂停音乐播放
+       },
   },
   mounted(){
       this.$nextTick(() => {
