@@ -4,7 +4,7 @@
         <mu-popup position="top" :overlay="false" popupClass="demo-popup-top" :open="topPopup">
             手机号输入错误
         </mu-popup>
-        <div class="note" :style="note">
+        <div class="note" v-lazy:background-image="note">
             <div class="login_span">
             <div class="login_span_font">登录</div>
             <mu-text-field style="width:100%" label="手机号" v-model="phone" hintText="请输入手机号" labelFloat></mu-text-field>
@@ -26,15 +26,7 @@ import API from '@/api'
 export default {
   data(){
     return {
-        note: {//设置背景图片
-            backgroundImage: "url(" + require("../../assets/img/background.jpeg") + ")",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
-            backgroundSize: "cover",
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-          },
+        note:require('../../assets/img/background.jpeg'),//设置背景图片
         topPopup: false,//状态弹框
         phone:'',//手机号
         password:'',//密码

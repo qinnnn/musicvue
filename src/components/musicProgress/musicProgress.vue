@@ -1,6 +1,6 @@
 <template>
   <div v-if="musicState" :style="musicZIndex" class="audio_cont" @click="loadStick">
-    <img class="musicMuListImg" :src="musicBlurPic" style="flex-grow:1;margin-top: 5px;margin-left: 15px;" />
+    <img class="musicMuListImg" v-lazy="musicBlurPic" style="flex-grow:1;margin-top: 5px;margin-left: 15px;" />
     <div class="audio_tag">
         <div v-if="songTitle" class="audio_tag_text2">{{information.name}}</div>
         <div v-if="songTitle" class="audio_tag_text">{{information.ar[0].name}}/{{information.al.name}}</div>
@@ -10,7 +10,7 @@
     <div class="audio_tag_img iconfont">&#xe600;</div>
 
     <mu-popup position="bottom" popupClass="demo-popup-bottom" :open="bottomMusic" @close="closeMusic()">
-      <div class="musicBottom" :style="audioBacground" style="background-size: cover;background-position: 50%;filter: blur(40px);"></div>
+      <div class="musicBottom" v-lazy:background-image="audioBacground" style="background-size: cover;background-position: 50%;filter: blur(40px);"></div>
       <div class="login_load" style="z-index:9"></div>
       <div class="audioDetails">
           <div class="audioDetails_tag">
@@ -25,10 +25,10 @@
               <transition name="lyric">
               <div v-if="!lyricState" class="audioState_cent_cd">
                   <div class="audioState_cent_cd_m">
-                    <div class="audioState_cent_cd_mao" @click="lyricState=!lyricState" :style="{backgroundImage:'url('+require('../../assets/img/cd2.png')+')',transform:'rotate('+cd2Rotate+'deg)'}"></div>
+                    <div class="audioState_cent_cd_mao" @click="lyricState=!lyricState" v-lazy:background-image="{backgroundImage:'url('+require('../../assets/img/cd2.png')+')',transform:'rotate('+cd2Rotate+'deg)'}"></div>
                   </div>
                   <div class="audioState_cent_cd_pan roter" @click="lyricState=!lyricState" :class="{roter_pause :cdRotate}" :style="{backgroundImage:'url('+require('../../assets/img/cd.png')+')'}"></div>
-                  <div class="audioState_cent_cd_img roter" @click="lyricState=!lyricState" :class="{roter_pause :cdRotate}" :style="{backgroundImage:'url('+musicBlurPic+')'}"></div>
+                  <div class="audioState_cent_cd_img roter" @click="lyricState=!lyricState" :class="{roter_pause :cdRotate}" v-lazy:background-image="musicBlurPic"></div>
               </div>
               </transition>
               <transition name="lyric">
@@ -118,9 +118,7 @@ export default {
           musicZIndex:{
               zIndex:this.musiczIndex//设置层次
           },
-          audioBacground:{//歌单详情背景图
-              backgroundImage:''
-          },
+          audioBacground:'',//歌单详情背景图
           progress:0,//当前进度
           loop:1,//循环播放
           cdRotate:true,//cd的旋转
@@ -223,7 +221,7 @@ export default {
         var params={
             id:this.musicId
         }
-        this.audioBacground.backgroundImage="url("+this.musicBlurPic+")"
+        this.audioBacground=this.musicBlurPic
         API.music.musicUrl(params).then(({data}) => {//获取歌曲url
             // console.log(data)
             var params={

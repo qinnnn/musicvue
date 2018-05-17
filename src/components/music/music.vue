@@ -43,7 +43,7 @@
                 <div v-if="MusicSongShee" @click="DetailsOfTheSongSheet(index.id)" class="musicSongList" v-for="(index,key) in mySongSheetList" :key="key">
                     <mu-list class="musicMuList" >
                         <mu-list-item titleClass="musicMuList_listdan_title" :title="index.name" textClass="musicMuList_listdan_font" :afterText="index.trackCount+' 首'" afterTextClass="musicMuList_listdan_font">
-                            <img class="musicMuListImg" :src="index.coverImgUrl" slot="leftAvatar"/>
+                            <img class="musicMuListImg" v-lazy="index.coverImgUrl" slot="leftAvatar"/>
                             <div class=" iconfont" slot="right">&#xe679;</div>
                         </mu-list-item>
                     </mu-list>
@@ -71,7 +71,7 @@
                 <div v-if="thisMusicSongShee" @click="DetailsOfTheSongSheet(index.id)" class="musicSongList" v-for="(index,key) in thisSongSheetList" :key="key">
                     <mu-list class="musicMuList">
                         <mu-list-item titleClass="musicMuList_listdan_title" :title="index.name" textClass="musicMuList_listdan_font">
-                            <img class="musicMuListImg" :src="index.coverImgUrl" slot="leftAvatar"/>
+                            <img class="musicMuListImg" v-lazy="index.coverImgUrl" slot="leftAvatar"/>
                             <span class="musicMuList_listdan_font">
                                 {{index.trackCount}}首
                             </span>

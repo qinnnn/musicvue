@@ -1,8 +1,8 @@
 <template>
   <div class="contact" ref="videos">
     <div class="contact_cent" style="width:100%">
-        <div v-for="(item,key) in videoList" class="contentleft" :key="key">
-            <div class="videos_list_back" :style="{backgroundImage:'url('+item.cover+')'}">
+        <div v-for="(item,key) in videoList" class="contentleft" :key="key" style="margin-bottom:10px;">
+            <lazy-component class="videos_list_back" v-lazy:background-image="item.cover">
                 <div class="audioState_cent_cd">
                     <div class="videos_list_username">
                     {{item.artistName}}
@@ -13,7 +13,7 @@
                     <span>{{item.playCount}}</span>
                     <span>{{item.name}}</span>
                 </div>
-            </div>
+            </lazy-component>
             <div class="videos_list_tag">{{item.briefDesc}}</div>
         </div>
         <div v-if="loadingImg" class="spinner">

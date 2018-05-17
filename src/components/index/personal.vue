@@ -2,8 +2,8 @@
     <div>
   <div class="wrapperleft" ref="wrapperleft">
       <div class="contentleft">
-        <div class="userCont" :style="{backgroundImage: 'url(' +backgroundImg+ ')',position:'absolute'}">
-            <div class="userCont_img" :style="{backgroundImage: 'url(' +userImg+ ')'}"></div>
+        <div class="userCont" v-lazy:background-image="backgroundImg" style="position:absolute">
+            <div class="userCont_img" v-lazy:background-image="userImg"></div>
             <div class="userCont_name">{{username}}</div>
             <div class="userCont_level">LV.{{userlevel}}</div>
             <div class="userCont_qiandao iconfont">&#xe641;签到</div>

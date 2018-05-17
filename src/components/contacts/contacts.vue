@@ -2,8 +2,8 @@
   <div class="contact" ref="contact">
     <div class="contact_cent">
         <div class="contact_list" v-for="(item,key) in contcatsList" :key="key">
-            <div v-if="contcatsListJson[key].actId" class="contact_list_userImg" :style="{backgroundImage:'url('+contcatsListJson[key].coverMobileUrl+')'}"></div>
-            <div v-else class="contact_list_userImg" :style="{backgroundImage:'url('+item.user.avatarUrl+')'}"></div>
+            <div v-if="contcatsListJson[key].actId" class="contact_list_userImg" v-lazy:background-image="contcatsListJson[key].coverMobileUrl"></div>
+            <div v-else class="contact_list_userImg" v-lazy:background-image="item.user.avatarUrl"></div>
             <div class="contact_list_cont">
                 <div class="contact_list_left">
                     <div class="contact_list_user">
@@ -23,7 +23,7 @@
                     {{contcatsListJson[key].msg}}
                 </div>
                 <!-- video 视频-->
-                <div v-if="contcatsListJson[key].video" class="contact_list_video" :style="{backgroundImage:'url('+contcatsListJson[key].video.coverUrl+')'}">
+                <div v-if="contcatsListJson[key].video" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].video.coverUrl">
                     <div class="contact_list_video_title">
                         {{contcatsListJson[key].video.title}}
                         <span>-by{{contcatsListJson[key].video.creator.nickname}}</span>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <!-- song -->
-                <div v-else-if="contcatsListJson[key].song" @click="musicPlay(contcatsListJson[key].song.id,contcatsListJson[key].song.album.blurPicUrl)" class="contact_list_video" :style="{backgroundImage:'url('+contcatsListJson[key].song.album.blurPicUrl+')'}">
+                <div v-else-if="contcatsListJson[key].song" @click="musicPlay(contcatsListJson[key].song.id,contcatsListJson[key].song.album.blurPicUrl)" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].song.album.blurPicUrl">
                     <div class="contact_list_video_bottom">
                         <span style="float:left" class="iconfont">&#xe77e;</span>
                         <span style="float:left">{{contcatsListJson[key].song.popularity}}</span>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <!-- playlist 歌单-->
-                <div v-else-if="contcatsListJson[key].playlist" @click="songSheetPlay(contcatsListJson[key].playlist.id)" class="contact_list_video" :style="{backgroundImage:'url('+contcatsListJson[key].playlist.coverImgUrl+')'}">
+                <div v-else-if="contcatsListJson[key].playlist" @click="songSheetPlay(contcatsListJson[key].playlist.id)" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].playlist.coverImgUrl">
                     <div class="contact_list_video_bottom">
                         <span style="float:left" class="iconfont">&#xe77e;</span>
                         <span style="float:left">{{contcatsListJson[key].playlist.popularity}}</span>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <!-- program -->
-                <div v-else-if="contcatsListJson[key].program" class="contact_list_video" :style="{backgroundImage:'url('+contcatsListJson[key].program.coverUrl+')'}">
+                <div v-else-if="contcatsListJson[key].program" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].program.coverUrl">
                     <div class="contact_list_video_bottom">
                         <span style="float:left" class="iconfont">&#xe77e;</span>
                         <span style="float:left">{{contcatsListJson[key].program.listenerCount}}</span>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <!-- 活动 -->
-                <div v-else-if="contcatsListJson[key].actId" class="contact_list_video" :style="{backgroundImage:'url('+contcatsListJson[key].coverMobileUrl+')'}">
+                <div v-else-if="contcatsListJson[key].actId" class="contact_list_video" v-lazy:background-image="contcatsListJson[key].coverMobileUrl">
                     <div class="contact_list_video_bottom">
                         <span style="float:left">{{contcatsListJson[key].participateCount}}</span>
                         <span style="float:right">{{contcatsListJson[key].meetingBeginTime | dateTime}}</span>

@@ -3,13 +3,42 @@
     <div class="contact_cent" style="width:100%">
         <div class="audios_banner" ref="banner">
             <div class="audios_bannerC">
-                <div v-for="(item,key) in banner" class="audios_banner_cont" :key="key" :style="{backgroundImage:'url('+item.pic+')'}">
-                    
-                </div>
-                <div class="audios_banner_tag" ref="audios_banner">
-                    <div v-for="(item,key) in banner" class="audios_banner_tag_chang" :class="{audios_banner_tag_chang2 : activeTab==key}" :key="key"></div>
+                <div v-for="(item,key) in banner" class="audios_banner_cont" :key="key" v-lazy:background-image="item.pic">
+                    <div class="audios_banner_title">{{item.typeTitle}}</div>
                 </div>
             </div>
+            <div class="audios_banner_tag">
+                <div v-for="(item,key) in banner" class="audios_banner_tag_chang" @click="bannerUpdate(key)" :class="{audios_banner_tag_chang2 : activeTab==key}" :key="key"></div>
+            </div>
+        </div>
+        <div class="audios_day">
+            <i>
+            <div>
+                <span class="iconfont">&#xe60d;</span>
+            </div>
+            <p>私人FM</p>
+            </i>
+            <i>
+            <div>
+                <span class="iconfont">&#xe603;</span>
+            </div>
+            <p>每日推荐</p>
+            </i>
+            <i>
+            <div>
+                <span class="iconfont" style="font-size:23px">&#xe602;</span>
+            </div>
+            <p>歌单</p>
+            </i>
+            <i>
+            <div>
+                <span class="iconfont">&#xe604;</span>
+            </div>
+            <p>排行榜</p>
+            </i>
+        </div>
+        <div class="audios_recommend">
+
         </div>
     </div>
   </div>
@@ -27,16 +56,18 @@ export default {
           autoPlay:true,
           bannerSlide:1,
           activeTab: 0,
+          time:'',
+          bannerWidth:0
       }
   },
 //   store,
   computed:{
       ...mapGetters([
-      ])
-  },
-  components:{
+      ]),
+
   },
   mounted(){
+      this.bannerWidth=this.$refs.banner.offsetWidth
       this.$nextTick(() => {
           this.slide()
           this.slide2()
@@ -50,6 +81,9 @@ export default {
           }
           
       })
+  },
+  created(){
+      this.setTime()
   },
   methods:{
       ...mapMutations([
@@ -68,8 +102,7 @@ export default {
         })
       },
       handleTabChange (val) {
-        let width=this.$refs.banner.offsetWidth;
-        this.scroll.scrollTo(-val*width,0,300)
+        this.scroll.scrollTo(-val*this.bannerWidth,0,300)
         this.activeTab = val
         },
         slideChange(val){
@@ -90,12 +123,11 @@ export default {
               bottom:false
             }
         })
-        let width=this.$refs.banner.offsetWidth;
         this.scroll.on("scroll",(e)=>{
               let x=-e.x
               let page=0;
-              page+=parseInt(x/width)
-              if(x%width>width/2){
+              page+=parseInt(x/this.bannerWidth)
+              if(x%this.bannerWidth>this.bannerWidth/2){
                 page++
               }
               this.slideChange(page)
@@ -103,13 +135,26 @@ export default {
           this.scroll.on("touchEnd",(e)=>{
             let x=-e.x
             let page=0;
-            page+=parseInt(x/width)
-            if(x%width>width/2){
+            page+=parseInt(x/this.bannerWidth)
+            if(x%this.bannerWidth>this.bannerWidth/2){
               page++
             }
             this.handleTabChange(page)
           })
        },
+       bannerUpdate(key){
+            this.scroll.scrollTo(-key*this.bannerWidth,0,300)
+            this.activeTab=key
+       },
+       setTime(){
+           this.time=setInterval(() => {
+                this.activeTab+=1
+                if(this.activeTab>=this.banner.length){
+                   this.activeTab=0
+               }
+                this.bannerUpdate(this.activeTab)
+            },4000);
+       }
   }
 }
 </script>
