@@ -6,11 +6,8 @@ const service = axios.create({
   timeout: 1000 * 30,
   withCredentials: true,
   headers: {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Cache-Control': 'max-age=0',
+    'Accept': '*',
     // 'If-Range':'721afd4a7448bfcf7aafedf6eae1f218',
-    'Range':'bytes=0-',
-    'Upgrade-Insecure-Requests': '1'
   }
 })
 

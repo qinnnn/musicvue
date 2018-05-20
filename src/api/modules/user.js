@@ -11,3 +11,11 @@ export function information (params) {
       params: requestParam(params, 'get')
     })
   }
+// 获取歌手信息
+export function artist (params) {
+  return request({
+    url: requestUrl('/artist/desc'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}

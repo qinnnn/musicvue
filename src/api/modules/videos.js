@@ -11,3 +11,11 @@ export function mv (params) {
       params: requestParam(params, 'get')
     })
   }
+// 获取mv信息
+export function mvSrc (params) {
+  return request({
+    url: requestUrl('/mv'),
+    method: 'get',
+    params: requestParam(params, 'get')
+  })
+}

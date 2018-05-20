@@ -7,7 +7,7 @@ import store from './vuex/index'//vuex
 import MuseUI from 'muse-ui'//muse-ui
 import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-teal.css'
-import axios from 'axios'//滑动组件
+import axios from 'axios'
 import '@/assets/scss/index.scss'//scss
 import animate from 'animate.css'//css3动画
 import VueLazyLoad from 'vue-lazyload'//图片懒加载

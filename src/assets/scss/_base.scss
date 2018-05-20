@@ -927,7 +927,7 @@ to{transform:rotate(360deg)}
   border-radius: 10px;
   margin-left: 10px;
   margin-top: 10px;
-  border:1px solid #fff;
+  border:1px solid #757575;
 }
 .videos_list_cont{
   flex-grow: 10;
@@ -1190,6 +1190,125 @@ to{transform:rotate(360deg)}
     }
   }
 }
+.backgroundColor{
+  background-color: #009688;
+}
+.mvplay_tag{
+  height: 35px;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  span{
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  div{
+    margin-left: 10px;
+    font-size: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.mvplay_mv{
+  width:100%;
+  height:auto;
+  video{
+    width:100%;
+  }
+  span{
+    position: absolute;
+    width:100%;
+    top:35px;
+    pointer-events: auto;
+    background-size: cover;
+    background-repeat:no-repeat;  
+  }
+}
+.mvplayBottom{
+  display: flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+}
+.MVwrapper{
+  height: auto;
+  flex-grow: 1;
+}
+.contentMV_cont{
+  width:100%;
+  padding:0 4%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border-bottom:1px solid #ddE0df;
+  span{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  i{
+    color: #8d8e8e;
+    font-style: normal;
+  }
+}
+.contentMV_cont_user{
+  height: 60px;
+  img{
+    pointer-events: auto;
+    background-size: cover;
+    background-repeat:no-repeat;  
+    width:45px;
+    border-radius: 100%;
+    margin-top: 7px;
+    float: left;
+  }
+  p{
+    font-style: normal;
+    font-size:14px;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 10px;
+    line-height: 60px;
+    float: left;
+  }
+  span{
+    float: right;
+    height:25px;
+    border:1px solid #d2d6d5;
+    padding:0 10px;
+    border-radius: 20px;
+    line-height: 25px;
+    font-size: 12px;
+    margin-top: 18px;
+    color: #009688;
+  }
+}
+.contentMV_cont_tag{
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap:wrap;
+  b{
+    font-weight: normal;
+    border:1px solid #d2d6d5;
+    padding:5px 10px;
+    border-radius: 13px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+  }
+}
+.contentMV_cont_Interaction{
+  display: flex;
+  justify-content:space-around;
+  i{
+    
+  }
+}
+
 
 
 

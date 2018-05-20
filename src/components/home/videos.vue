@@ -10,7 +10,7 @@
                 </div>
                 <div class="videos_list_cont">
                     <span class="iconfont">&#xe77e;</span>
-                    <span>{{item.playCount}}</span>
+                    <span>{{item.playCount | playCount}}</span>
                     <span>{{item.name}}</span>
                 </div>
             </div>
@@ -33,8 +33,8 @@ import {mapGetters, mapMutations, mapActions} from 'vuex';
 export default {
   data(){
       return{
-          limit:10,
-          videoList:[],
+          limit:10,//视频加载的数量
+          videoList:[],//视频数组
           loadingImg:true,//加载数据时的load图
       }
   },
@@ -51,7 +51,7 @@ export default {
       var params={
           limit:this.limit
         }
-      API.videos.mv(params).then(({data}) => {
+      API.videos.mv(params).then(({data}) => {//加载视频列表内容
         //   console.log(data)
           this.loadingImg=false
           if(data&&data.code==200){
@@ -85,6 +85,16 @@ export default {
         this.set_mvPlayId(id)//传入mvid
         this.set_musiczPlayState(false)//开始播放mv暂停音乐播放
        },
+  },
+  filters:{
+      playCount:function(num){//数量超过1万的数据简化
+          if(num>10000){
+              num=parseInt(num)/10000
+              return parseInt(num)+"万"
+          }else{
+              return num
+          }
+      }
   }
 }
 </script>
